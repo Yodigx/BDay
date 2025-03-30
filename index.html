@@ -307,36 +307,56 @@
             left: 20px;
         }
 
-        /* Virtual Cake Styles */
-        .cake {
+        /* ======== UPDATED VIRTUAL CAKE STYLES ======== */
+        .cake-container {
             position: relative;
-            width: 200px;
-            height: 120px;
+            width: 220px;
+            height: 180px;
             margin: 0 auto;
         }
+
         .plate {
             width: 220px;
             height: 20px;
             background: #e0e0e0;
             border-radius: 50%;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
+
+        .cake {
+            position: relative;
+            width: 200px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        .layer {
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 10px 10px 0 0;
+        }
+
         .layer-bottom {
-            width: 180px;
-            height: 60px;
-            background: #f9c5d1;
-            border-radius: 10px 10px 0 0;
-            margin: 0 auto;
+            height: 50px;
+            background: #f9c5d1; /* Pink base */
         }
-        .layer-top {
-            width: 150px;
+
+        .layer-middle {
             height: 40px;
-            background: #f999b7;
-            border-radius: 10px 10px 0 0;
-            margin: 0 auto;
+            background: #f999b7; /* Darker pink */
+            width: 180px;
         }
+
+        .layer-top {
+            height: 30px;
+            background: #ff66b3; /* Accent color */
+            width: 160px;
+        }
+
         .icing {
-            width: 150px;
+            width: 160px;
             height: 10px;
             background: #fff;
             border-radius: 5px;
@@ -344,28 +364,35 @@
             position: relative;
             top: -5px;
         }
+
         .candle {
-            width: 10px;
-            height: 40px;
-            background: #ffd700;
+            width: 12px;
+            height: 50px;
+            background: linear-gradient(to right, #ffd700, #ffcc00);
             margin: 0 auto;
             position: relative;
-            top: -60px;
+            top: -90px;
             left: 0;
+            z-index: 3;
+            border-radius: 3px;
         }
+
         .flame {
-            width: 15px;
+            width: 16px;
             height: 30px;
             background: #ff9900;
             border-radius: 50% 50% 20% 20%;
             margin: 0 auto;
             position: relative;
             top: -20px;
-            animation: flicker 0.5s infinite alternate;
+            animation: flicker 0.8s infinite alternate;
+            box-shadow: 0 0 10px #ff6600, 0 0 20px #ff9900;
         }
+
         @keyframes flicker {
             0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1.1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+            100% { transform: scale(0.9); opacity: 0.8; }
         }
         
         @media (max-width: 768px) {
@@ -453,17 +480,20 @@
             </div>
         </div>
         
-        <!-- Virtual Cake (Hidden Initially) -->
+        <!-- ======== UPDATED VIRTUAL CAKE ======== -->
         <div id="virtualCake" style="display: none; text-align: center; margin: 2rem 0;">
             <h2><i class="fas fa-birthday-cake"></i> Blow out the candles! <i class="fas fa-birthday-cake"></i></h2>
-            <div class="cake">
-                <div class="plate"></div>
-                <div class="layer layer-bottom"></div>
-                <div class="layer layer-top"></div>
-                <div class="icing"></div>
-                <div class="candle">
-                    <div class="flame"></div>
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="layer layer-bottom"></div>
+                    <div class="layer layer-middle"></div>
+                    <div class="layer layer-top"></div>
+                    <div class="icing"></div>
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
                 </div>
+                <div class="plate"></div>
             </div>
             <button class="btn btn-primary mt-3" onclick="blowOutCandles()">
                 <i class="fas fa-wind"></i> Blow Out Candles!
